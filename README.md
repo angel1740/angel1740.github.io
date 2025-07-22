@@ -1,12 +1,69 @@
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>PCB Fabrication Checklist</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 20px; background-color: #f4f4f4; }
-    h2 { color: #333; }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f4f4f4;
+    }
+    h2 {
+      color: #333;
+    }
+    .section {
+      margin-bottom: 20px;
+      background: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .section label {
+      display: inline-block;
+      margin-bottom: 8px;
+      margin-right: 15px;
+    }
+    input[type="text"], input[type="email"] {
+      margin-top: 5px;
+      margin-bottom: 10px;
+      padding: 6px;
+      width: 300px;
+    }
+    button {
+      padding: 10px 15px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h2></h2>
+
+  <form id="pcbForm" action="https://formsubmit.co/angel@lingkeypcba.com" method="POST">
+
+
+
+
+
+    
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PCB Fabrication Checklist</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f4f4f4;
+    }
+    h2 {
+      color: #333;
+    }
     .section {
       margin-bottom: 20px;
       background: #fff;
@@ -19,19 +76,13 @@
       display: inline-block;
       margin-bottom: 5px;
     }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-      background: #fff;
-    }
-    th, td {
-      text-align: left;
-      padding: 8px;
-      border: 1px solid #ccc;
-    }
-    th {
-      background-color: #e6f7ff;
+    .output {
+      white-space: pre-wrap;
+      background: #e6f7ff;
+      padding: 10px;
+      border: 1px solid #91d5ff;
+      border-radius: 6px;
+      margin-top: 10px;
     }
   </style>
 </head>
@@ -184,46 +235,77 @@
 
     <div class="section">
     <button type="button" onclick="submitForm()">Submit</button>
-
+  </form>
   <pre id="output" style="white-space: pre-wrap; margin-top: 20px;"></pre>
-
-
-  <div id="resultTable" class="section" style="display:none;">
-    <h3>Submission Summary</h3>
-    <table id="outputTable">
-      <thead>
-        <tr><th>Field</th><th>Value</th></tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-  </div>
 
   <script>
     function submitForm() {
       const form = document.getElementById('pcbForm');
       const data = new FormData(form);
-      const outputTable = document.getElementById('outputTable').querySelector('tbody');
-      outputTable.innerHTML = '';  // clear previous
-
-      const result = {};
+      const output = [];
       for (const [key, value] of data.entries()) {
-        if (!result[key]) result[key] = [value];
-        else result[key].push(value);
+        output.push(`${key}: ${value}`);
       }
-
-      for (const key in result) {
-        const tr = document.createElement('tr');
-        const tdKey = document.createElement('td');
-        tdKey.textContent = key;
-        const tdVal = document.createElement('td');
-        tdVal.textContent = result[key].join(', ');
-        tr.appendChild(tdKey);
-        tr.appendChild(tdVal);
-        outputTable.appendChild(tr);
-      }
-
-      document.getElementById('resultTable').style.display = 'block';
+      document.getElementById('output').innerText = output.join('\n');
     }
   </script>
+</body>
+</html>
+
+    
+    
+    
+    
+    
+    
+    <div class="section">
+      <label>Surface technology (copy and paste):</label><br/>
+      <input type="text" name="Surface technology (copy and paste)" id="summaryBox" required />
+    </div>
+
+    <div class="section">
+      <label>Your Email:</label><br/>
+      <input type="email" name="Email" required />
+    </div>
+    
+    
+
+    <!-- 隐藏项 -->
+    <input type="hidden" name="_captcha" value="false">
+    
+    
 
 
+
+    
+    <div class="section">
+      <button type="button" onclick="generateSummary()">1. Generate Summary</button>
+      <button type="submit">2. Submit to Email</button>
+    </div>
+  </form>
+
+  <script>
+    function generateSummary() {
+      const form = document.getElementById('pcbForm');
+      const formData = new FormData(form);
+      const result = {};
+
+      for (const [key, value] of formData.entries()) {
+        if (!result[key]) {
+          result[key] = [value];
+        } else {
+          result[key].push(value);
+        }
+      }
+
+      let summary = '';
+      for (const key in result) {
+        if (key.startsWith('_')) continue; // Skip hidden inputs
+        summary += `${key}: ${result[key].join(', ')}\n`;
+      }
+
+      document.getElementById('summaryBox').value = summary.trim();
+    }
+  </script>
+</body>
+</html>
