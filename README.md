@@ -1,5 +1,4 @@
 
-<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -185,10 +184,9 @@
 
     <div class="section">
     <button type="button" onclick="submitForm()">Submit</button>
-  </form>
+
   <pre id="output" style="white-space: pre-wrap; margin-top: 20px;"></pre>
 
-  </form>
 
   <div id="resultTable" class="section" style="display:none;">
     <h3>Submission Summary</h3>
@@ -227,7 +225,5 @@
       document.getElementById('resultTable').style.display = 'block';
     }
   </script>
-</body>
-</html>
 
 
