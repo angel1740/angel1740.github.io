@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -47,9 +47,6 @@
 
 
 
-
-    
-    <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -235,7 +232,7 @@
 
     <div class="section">
     <button type="button" onclick="submitForm()">Submit</button>
-  </form>
+
   <pre id="output" style="white-space: pre-wrap; margin-top: 20px;"></pre>
 
   <script>
@@ -249,12 +246,7 @@
       document.getElementById('output').innerText = output.join('\n');
     }
   </script>
-</body>
-</html>
 
-    
-    
-    
     
     
     
@@ -272,8 +264,6 @@
 
     <!-- 隐藏项 -->
     <input type="hidden" name="_captcha" value="false">
-    
-    
 
 
 
@@ -282,7 +272,7 @@
       <button type="button" onclick="generateSummary()">1. Generate Summary</button>
       <button type="submit">2. Submit to Email</button>
     </div>
-  </form>
+
 
   <script>
     function generateSummary() {
@@ -307,5 +297,4 @@
       document.getElementById('summaryBox').value = summary.trim();
     }
   </script>
-</body>
-</html>
+
