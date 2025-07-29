@@ -251,7 +251,7 @@
     
     
     <div class="section">
-      <label>Surface technology (copy and paste):</label><br/>
+      <label>Surface technology :</label><br/>
       <input type="text" name="Surface technology " id="summaryBox" required />
     </div>
 
